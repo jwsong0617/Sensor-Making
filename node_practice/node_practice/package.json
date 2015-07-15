@@ -1,0 +1,10 @@
+{
+  "name": "node_practice",
+  "version": "0.0.0",
+  "description": "node_practice",
+  "main": "app.js",
+  "author": {
+    "name": "adsl",
+    "email": ""
+  }
+}

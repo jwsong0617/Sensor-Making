@@ -22,9 +22,12 @@ noble.on('discover', function (peripheral) {
     }
     */
     var macAddress = peripheral.uuid;
-    var localName = advertisement.localName;
-    var rss = peripheral.rssi;    
-    console.log('found device: ', macAdress, ' ', localName, ' ',rss);
+    //var localName = advertisement.localName;
+    var rss = peripheral.rssi;
+    var now = new Date();
+    console.log('found device: ', macAdress,' ', rss, ' ',
+        parseInt(now.getYear() + (now.getMonth() + 1) + now.getDate() + " " 
+            + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds()));
 });
 /*
     console.log('peripheral discovered (' + peripheral.uuid +

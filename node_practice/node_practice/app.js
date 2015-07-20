@@ -9,6 +9,7 @@ function executeCallbacks() {
                 var j = i;
                 fs.stat('./' + filenames[i], function (err, stats) {
                     console.log(j + ':' + stats.isFile());
+
                 });
             })();
         }
@@ -27,7 +28,8 @@ executeCallbacks();
  * 실행할때 순차적으로 출력되지 않는 경우가 있는데 이게 이해가 잘 안됩니다.
  */
 
-var arr = []
+
+/*var arr = []
 for (var i = 0; i < 5; i++) {
     arr[i] = function (id) {
         return function () {
@@ -38,4 +40,17 @@ for (var i = 0; i < 5; i++) {
 for (var index in arr) {
     console.log(arr[index]());
 }
+*/
+
 //이 코드는 잘 됩니다.
+/*
+var http = require('http');
+http.createServer(function (request, response) {
+    response.writeHead(200, { 'Content-type': 'text/html' });
+    response.end('<h1>Hello World .. !</h1>');
+}).listen(52273, function () {
+    console.log('Server running at http://127.0.0.1:52273');
+});
+ * */
+//console.log('output: %d', 273);
+//console.log('273');

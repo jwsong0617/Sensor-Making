@@ -31,6 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="get_uuid_and_rssi.js" />
+    <Compile Include="JavaScript1.js" />
+    <Compile Include="JavaScript2.js" />
+    <Compile Include="adv-discovery.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>

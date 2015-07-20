@@ -1,0 +1,13 @@
+{
+  "name": "node-sqlite",
+  "version": "0.0.0",
+  "description": "node-sqlite",
+  "main": "app.js",
+  "author": {
+    "name": "adsl",
+    "email": ""
+  },
+  "dependencies": {
+    "sqlite3": "^3.0.9"
+  }
+}

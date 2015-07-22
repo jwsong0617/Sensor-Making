@@ -69,4 +69,3 @@ db.serialize(function () {
     });
 });
 */
-db.close();

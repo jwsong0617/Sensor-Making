@@ -39,6 +39,7 @@
     <Compile Include="JavaScript1.js" />
     <Compile Include="JavaScript2.js" />
     <Compile Include="adv-discovery.js" />
+    <Compile Include="sqlite_query_test.js" />
     <Compile Include="sql_test.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />

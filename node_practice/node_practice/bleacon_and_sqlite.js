@@ -2,12 +2,12 @@
 var uuid = 'e2c56db5dffb48d2b060d0f5a71096e0'
 
 var fs = require("fs");
-var dbfile = "beacon.db";
-var exists = fs.existsSync(file);
+var dbfile = "./beacon.db";
+var exists = fs.existsSync(dbfile);
 
 if (!exists) {
     console.log("Creating DB file.");
-    fs.openSync(file, "w");
+    fs.openSync(dbfile, "w");
 }
 
 var sqlite3 = require("sqlite3").verbose();
@@ -18,7 +18,7 @@ Bleacon.startScanning(uuid);
 
 Bleacon.on('discover', function (bleacon) {
     if (bleacon) {
-        console.log("bleacon discoverd: " + bleacon.uuid + "\t" + bleacon.rssi + "\t" + bleacon.accuracy);
+        //console.log("bleacon discoverd: " + bleacon.uuid + "\t" + bleacon.rssi + "\t" + bleacon.accuracy);
         db.serialize(function () {
             if (!exists) {
                 db.run("CREATE TABLE IBEACON (timestamp TEXT PRIMARY KEY,uuid TEXT,distance REAL)");
@@ -45,7 +45,6 @@ Bleacon.on('discover', function (bleacon) {
 
     }
 });
-
 
 
 /*

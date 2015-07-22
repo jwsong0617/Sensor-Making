@@ -22,9 +22,10 @@ Bleacon.on('discover', function (bleacon) {
         db.serialize(function () {
             if (!exists) {
                 db.run("CREATE TABLE IBEACON (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,UUID TEXT,Distance REAL)");
-            }            
-            var stmt = db.prepare("INSERT INTO IBEACON VALUES (?,?)");
-            stmt.run(bleacon.uuid,bleacon.accuracy);
+            }
+            timestamp = new Date().getTime();
+            var stmt = db.prepare("INSERT INTO IBEACON VALUES (?,?,?)");
+            stmt.run(timestamp,bleacon.uuid,bleacon.accuracy);
             stmt.finalize();
             /*
             db.each("SELECT timestamp,uuid,distance FROM IBEACON", function (err, row) {

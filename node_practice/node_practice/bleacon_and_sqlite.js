@@ -1,24 +1,8 @@
-﻿/*var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(':memory:');
+﻿var Bleacon = require('bleacon');
+var uuid = 'e2c56db5dffb48d2b060d0f5a71096e0'
 
-db.serialize(function () {
-    db.run("CREATE TABLE lorem (info TEXT)");
-    
-    var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-    for (var i = 0; i < 10; i++) {
-        stmt.run("Ipsum " + i);
-    }
-    stmt.finalize();
-    
-    db.each("SELECT rowid AS id, info FROM lorem", function (err, row) {
-        console.log(row.id + ": " + row.info);
-    });
-});
-
-db.close();
-*/
 var fs = require("fs");
-var file = "test.db";
+var dbfile = "test.db";
 var exists = fs.existsSync(file);
 
 if (!exists) {
@@ -27,11 +11,23 @@ if (!exists) {
 }
 
 var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(file);
+var db = new sqlite3.Database(dbfile);
+
+
+Bleacon.startScanning(uuid);
+
+Bleacon.on('discover', function (bleacon) {
+    if (bleacon) {
+        console.log("bleacon discoverd: " + bleacon.uuid + "\t" + bleacon.rssi + "\t" + bleacon.proximity);
+    }
+});
+
+
+
 
 db.serialize(function () {
     if (!exists) {
-        db.run("CREATE TABLE Stuff (thing TEXT)");
+        db.run("CREATE TABLE IBEACON (thing TEXT)");
     }
     
     var stmt = db.prepare("INSERT INTO Stuff VALUES (?)");

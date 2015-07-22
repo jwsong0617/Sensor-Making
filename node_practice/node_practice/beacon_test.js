@@ -12,7 +12,15 @@ noble.on('discover', function (peripheral) {
         console.log("peripheral discoverd: " + peripheral.uuid + "\t" + peripheral.rssi);
     }
     var ib = new ibeacon(peripheral.uuid);
-    peripheral.on('rssiUpdate', writeout);//updateRSSI
+    peripheral.on('connect', function () {
+        console.log('connected' + peripheral.uuid + "\t" + peripheral.rssi);
+    });
+    peripheral.on('disconnect', function () {
+        console.log('connected' + peripheral.uuid + "\t" + peripheral.rssi);
+    });
+
+    //peripheral.on('rssiUpdate', writeout);//updateRSSI
+    
     /*
     setInterval(function () {
         peripheral.updateRssi();

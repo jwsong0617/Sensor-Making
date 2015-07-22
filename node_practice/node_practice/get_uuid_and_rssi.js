@@ -36,8 +36,11 @@ noble.on('discover', function (peripheral) {
     그 queue가 비어있지 않으면 db에 저장하는 함수를 scanning 주기적으로 하는 시간에 따라서
     부르자. 그 함수에서는 그 때 queue에 있는 개수만큼 db에 저장하고 queue에서 빼낸다.
     */
+    if (peripheral) {
+        console.log("peripheral discoverd: " + peripheral.uuid + "\t" + peripheral.rssi);
+    }
     var ib = new ibeacon(peripheral.uuid);
-    peripheral.on('rssiUpdate',ib.archiveRSSI(rssi));//updateRSSI
+    peripheral.on('rssiUpdate',ib.archiveRSSI);//updateRSSI
 });
 
 function ibeacon(uuid){
@@ -50,6 +53,11 @@ function ibeacon(uuid){
 ibeacon.prototype.archiveRSSI = function (rssi) {
     console.log(rssi);
 };
+
+setInterval(function () {
+    peripheral.updateRssi();//다시 scanning
+    //peripheral.discoverServices();//10초에 한번 씩 Services를 discover
+}, 2000);
 
 /*
  * 생성자

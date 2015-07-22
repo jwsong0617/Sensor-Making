@@ -1,5 +1,7 @@
 ﻿var Bleacon = require('bleacon');
-Bleacon.startScanning('78a5044f5068');
+var uuid = 'e2c56db5dffb48d2b060d0f5a71096e0'
+            
+Bleacon.startScanning(uuid);
 
 Bleacon.on('discover', function (bleacon) {
     if (bleacon) {

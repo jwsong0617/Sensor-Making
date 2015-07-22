@@ -38,6 +38,7 @@
     <Compile Include="JavaScript1.js" />
     <Compile Include="JavaScript2.js" />
     <Compile Include="adv-discovery.js" />
+    <Compile Include="sql_test.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>

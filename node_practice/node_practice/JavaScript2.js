@@ -1,10 +1,8 @@
-﻿exports.abs = function (number){
-    if (0 < number) {
-        return number;
-    } else {
-        return -number;
-    }
+﻿var ibeacons = {
+    "MAC" : true,
+    "MAC2" : false
 }
-exports.circleArea = function (radius){
-    return radius * radius * Math.PI;
-}
+
+//console.log(Object.getOwnPropertyNames(ibeacons));
+mac_array = Object.getOwnPropertyNames(ibeacons);
+console.log(mac_array);

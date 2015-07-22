@@ -22,7 +22,7 @@ noble.on('discover', function (peripheral) {
     
     if (entered) {
         inRange[uuid] = {
-            peripheral: peripheral
+            "peripheral": peripheral
         };
         
         console.log('"' + peripheral.uuid + '" entered (RSSI ' + peripheral.rssi + ') ' + new Date());
@@ -44,7 +44,7 @@ setInterval(function () {
 }, EXIT_GRACE_PERIOD / 2);
 noble.on('stateChange', function (state) {
     if (state === 'poweredOn') {
-        noble.startScanning();
+        noble.startScanning([], true);
     } else {
         noble.stopScanning();
     }

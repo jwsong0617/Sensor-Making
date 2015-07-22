@@ -40,8 +40,12 @@ noble.on('discover', function (peripheral) {
         console.log("peripheral discoverd: " + peripheral.uuid + "\t" + peripheral.rssi);
     }
     var ib = new ibeacon(peripheral.uuid);
-    peripheral.on('rssiUpdate',ib.archiveRSSI);//updateRSSI
+    peripheral.on('rssiUpdate', writeout); //ib.archiveRSSI);//updateRSSI
 });
+
+function writeout(rssi) {
+    console.log(rssi);
+}
 
 function ibeacon(uuid){
     var id = uuid;

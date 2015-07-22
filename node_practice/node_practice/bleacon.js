@@ -5,6 +5,6 @@ Bleacon.startScanning(uuid);
 
 Bleacon.on('discover', function (bleacon) {
     if (bleacon) {
-        console.log("bleacon discoverd: " + bleacon.uuid + "\t" + bleacon.rssi+"\t"+bleacon.proximity);
+        console.log("bleacon discoverd: " + bleacon.uuid + "\t" + bleacon.accuracy);
     }
 });

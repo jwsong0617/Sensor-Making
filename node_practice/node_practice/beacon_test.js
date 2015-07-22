@@ -13,6 +13,10 @@ noble.on('discover', function (peripheral) {
     }
     var ib = new ibeacon(peripheral.uuid);
     peripheral.on('rssiUpdate', ib.archiveRSSI);//updateRSSI
+    
+    setInterval(function () {
+        peripheral.updateRssi();
+    }, 2000);
 });
 
 function ibeacon(uuid) {
@@ -26,6 +30,4 @@ ibeacon.prototype.archiveRSSI = function (rssi) {
     console.log(rssi);
 };
 
-setInterval(function () {
-    peripheral.updateRssi();
-}, 2000);
+

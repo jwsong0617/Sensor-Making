@@ -25,7 +25,7 @@ noble.on('discover', function (peripheral) {
             peripheral: peripheral
         };
         
-        console.log('"' + peripheral.advertisement.localName + '" entered (RSSI ' + peripheral.rssi + ') ' + new Date());
+        console.log('"' + peripheral.uuid + '" entered (RSSI ' + peripheral.rssi + ') ' + new Date());
     }
     
     inRange[uuid].lastSeen = Date.now();
@@ -36,7 +36,7 @@ setInterval(function () {
         if (inRange[uuid].lastSeen < (Date.now() - EXIT_GRACE_PERIOD)) {
             var peripheral = inRange[uuid].peripheral;
             
-            console.log('"' + peripheral.advertisement.localName + '" exited (RSSI ' + peripheral.rssi + ') ' + new Date());
+            console.log('"' + peripheral.uuid + '" exited (RSSI ' + peripheral.rssi + ') ' + new Date());
             
             delete inRange[uuid];
         }
@@ -44,7 +44,7 @@ setInterval(function () {
 }, EXIT_GRACE_PERIOD / 2);
 noble.on('stateChange', function (state) {
     if (state === 'poweredOn') {
-        noble.startScanning([], true);
+        noble.startScanning();
     } else {
         noble.stopScanning();
     }

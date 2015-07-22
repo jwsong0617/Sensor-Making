@@ -7,7 +7,7 @@
 var noble = require('noble');
 
 var RSSI_THRESHOLD = -90;
-var EXIT_GRACE_PERIOD = 2000; // milliseconds
+var EXIT_GRACE_PERIOD = 10000; // milliseconds
 
 var inRange = [];
 

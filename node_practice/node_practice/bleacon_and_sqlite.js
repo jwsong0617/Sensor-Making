@@ -21,10 +21,10 @@ Bleacon.on('discover', function (bleacon) {
         //console.log("bleacon discoverd: " + bleacon.uuid + "\t" + bleacon.rssi + "\t" + bleacon.accuracy);
         db.serialize(function () {
             if (!exists) {
-                db.run("CREATE TABLE IBEACON (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,UUID TEXT,Distance REAL)");
+                db.run("CREATE TABLE IBEACON (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)");
             }
             timestamp = new Date().getTime();
-            var stmt = db.prepare("INSERT INTO IBEACON VALUES (?,?,?)");
+            var stmt = db.prepare("INSERT INTO IBEACON(Timestamp,UUID,Distance) VALUES (?,?,?)");
             stmt.run(timestamp,bleacon.uuid,bleacon.accuracy);
             stmt.finalize();
             /*

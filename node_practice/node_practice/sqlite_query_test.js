@@ -2,7 +2,9 @@
 var dbfile = "./beacon.db";
 var sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database(dbfile);
-setInterval(db.each("SELECT uuid,distance FROM IBEACON", function (err, row) {
-    console.log(row.uuid, row.distance);
-}), 10000);
 
+var stmt = "SELECT Timestamp,UUID,Distance from IBEACON where UUID='e2c56db5dffb48d2b060d0f5a71096e0'";
+db.all(stmt, function (err, rows) {
+//rows contain values while errors, well you can figure out.
+    console.log(rows.uuid,rows.);
+});

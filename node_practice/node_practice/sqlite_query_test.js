@@ -9,14 +9,19 @@ fs.exists(dbfile, function (exists) {
         var db = new sqlite3.Database(dbfile);
         db.serialize(function () {
             var stmt = "SELECT Timestamp,UUID,Distance from IBEACON where UUID='e2c56db5dffb48d2b060d0f5a71096e0'";
-            db.each(stmt, function (err, rows) {
-                //print out results
-                console.log(rows.Timestamp + " " + rows.UUID + ", " + rows.Distance);
+            db2.all(stmt, function (err, rows) {
+                if (err) throw err;
+                if (rows.length != 0) {
+                    rows.forEach(function (row) {
+                        //print out results
+                        console.log(rows.Timestamp + " " + rows.UUID + ", " + rows.Distance);
+                    });                    
+                }
+                else {
+                    console.log("Database dose not exists");
+                }
             });
-        });
-    }
-    else {
-        console.log("Database dose not exists");
+        })
     }
 });
 

@@ -8,13 +8,15 @@ fs.exists(dbfile, function (exists) {
         //open the database
         var db = new sqlite3.Database(dbfile);
         db.serialize(function () {
-            var stmt = "SELECT Timestamp,UUID,Distance from IBEACON where UUID='e2c56db5dffb48d2b060d0f5a71096e0'";
-            db2.all(stmt, function (err, rows) {
+            var stmt = "SELECT Timestamp,UUID,Distance from IBEACON where ";
+            var condition = "UUID = 'e2c56db5dffb48d2b060d0f5a71096e0'";
+            stmt = stmt + condition;
+            db.all(stmt, function (err, rows) {
                 if (err) throw err;
                 if (rows.length != 0) {
                     rows.forEach(function (row) {
                         //print out results
-                        console.log(rows.Timestamp + " " + rows.UUID + ", " + rows.Distance);
+                        console.log(row.Timestamp + " " + row.UUID + ", " + row.Distance);
                     });                    
                 }
                 else {

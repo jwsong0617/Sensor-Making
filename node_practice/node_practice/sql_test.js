@@ -21,9 +21,15 @@ fs.exists(dbfile, function (exists) {
             //구간 선택
             var date1 = "07" + "-" + "22" + "-" + "2015";
             var date2 = "07" + "-" + "23" + "-" + "2015";
+            var date3 = '22 Jul 2015 00:00:00 GMT+0900';
+            var date4 = '23 Jul 2015 00:00:00 GMT+0900';
             var d1 = new Date(date1).getTime();
             var d2 = new Date(date2).getTime();
-            var condition = "Timestamp >= " + d1 + " AND Timestamp <= " + d2;
+            var d3 = Date.parse(date3);
+            var d4 = Date.parse(date4);
+            var condition = "Timestamp >= " + d3 + " AND Timestamp <= " + d4;
+            //Wed Jul 22 2015 00:00:00 GMT+0900 (대한민국 표준시) 부터
+            //Thu Jul 23 2015 00:00:00 GMT+0900(대한민국 표준시) 까지
             //사용자에게 입력받은 조건
             stmt = stmt + condition;
             db.all(stmt, function (err, rows) {

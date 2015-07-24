@@ -11,21 +11,19 @@ fs.exists(dbfile, function (exists) {
             var stmt = "SELECT * from IBEACON where ";
             //UUID선택
             //var condition = "UUID = 'e2c56db5dffb48d2b060d0f5a71096e0'";
-            
+            /*  
             //거리 선택
             var a = 2
             var b = 4
-            //2~4미터 사이 거리
-            var condition = "Distance >= a && Distance <= b";
-            
+            //2~4미터 사이 거리            
+            var condition = "Distance >= " + a + " AND Distance <= " + b;
+            */
             //구간 선택
-            /*
-            var date1 = "22" + "/" + "07" + "/" + "2015";
-            var date2 = "23" + "/" + "07" + "/" + "2015";
+            var date1 = "07" + "-" + "22" + "-" + "2015";
+            var date2 = "07" + "-" + "23" + "-" + "2015";
             var d1 = new Date(date1).getTime();
             var d2 = new Date(date2).getTime();
-            var condition = "row.Timestamp > d1 && row.Timestamp <d2";
-            */
+            var condition = "Timestamp >= " + d1 + " AND Timestamp <= " + d2;
             //사용자에게 입력받은 조건
             stmt = stmt + condition;
             db.all(stmt, function (err, rows) {
@@ -53,3 +51,5 @@ fs.exists(dbfile, function (exists) {
  *  입력값은 UUID값
  * 거리를 입력받는다.
  *  입력값은 구간(x~y미터 사이)
+ *  
+ */

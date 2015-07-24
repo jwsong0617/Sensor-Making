@@ -25,7 +25,9 @@ Bleacon.on('discover', function (bleacon) {
             }
             timestamp = new Date().getTime();
             var stmt = db.prepare("INSERT INTO IBEACON(Timestamp,UUID,Distance) VALUES (?,?,?)");
-            stmt.run(timestamp,bleacon.uuid,bleacon.accuracy);
+            stmt.run(timestamp, bleacon.uuid, bleacon.accuracy, function () {
+                console.log(timestamp, bleacon.uuid, bleacon.accuracy);
+            });
             stmt.finalize();
             /*
             db.each("SELECT timestamp,uuid,distance FROM IBEACON", function (err, row) {

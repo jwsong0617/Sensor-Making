@@ -3,9 +3,9 @@
 //db = dbmanager.getDB('beacon');
 db2 = dbmanager.getDB('beacon2');
 //createDBfile checked
-dbmanager.createDBfile('beacon2');
+//dbmanager.createDBfile('beacon2');
 //createBeaconTable checked
-dbmanager.createBeaconTable(db2, 'iBeacon2');
+//dbmanager.createBeaconTable(db2, 'iBeacon2');
 dbmanager.insertBeaconData(db2, 'iBeacon2', '1437569247455', 'itistest', 20);
 
 //getBeaconData checked

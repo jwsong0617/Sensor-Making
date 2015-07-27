@@ -5,7 +5,7 @@ Bleacon.startScanning(uuid);
 exports.getBeaconData = function (callback){
     Bleacon.on('discover', function (bleacon) {
         if (bleacon) {
-            var timestamp = Date().getTime();
+            timestamp = new Date().getTime();            
             callback(bleacon,timestamp);
         }
     });

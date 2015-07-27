@@ -9,9 +9,10 @@ exports.createDBfile = function (filename){
     if (!exists) {
         console.log("Creating DB file.");
         fs.openSync(dbfile, "w");
+        console.log("Done.");
     }
     if (exists) {
-        console.log("DB file already"+filename+" exists")
+        console.log("DB file exists")
     }
 }
 //get DB
@@ -58,11 +59,13 @@ exports.getBeaconData = function (db,table,condition,callback) {
             stmt = stmt + condition;
             db.all(stmt, function (err, rows) {
                 if (err) throw err;
-                if (rows.length != 0) {
+            if (rows.length != 0) {
+                    /*
                     rows.forEach(function (row) {
                         //print out results
                         console.log(row.Timestamp + " " + row.UUID + ", " + row.Distance);
                     });
+                    */
                     callback(rows);//rows는 array
                 }
                 else {

@@ -34,6 +34,7 @@
     <Compile Include="beacon_test.js" />
     <Compile Include="bleacon.js" />
     <Compile Include="bleacon_and_sqlite.js" />
+    <Compile Include="dbmanager.js" />
     <Compile Include="enterexit_test.js" />
     <Compile Include="get_uuid_and_rssi.js" />
     <Compile Include="JavaScript1.js" />

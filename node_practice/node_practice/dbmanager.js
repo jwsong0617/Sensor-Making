@@ -2,7 +2,7 @@
 var sqlite3 = require("sqlite3").verbose();
 
 //create DB
-var exists;
+//var exists;
 exports.createDBfile = function (filename){
     var dbfile = "./" + filename + ".db";
     var exists = fs.existsSync(dbfile);    
@@ -29,15 +29,15 @@ exports.getDB = function (filename){
 }
 //create BeaconTable
 exports.createBeaconTable = function (db, name){
-    if(exists){
+  //  if(exists){
         query = "CREATE TABLE "+name+" (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
         db.run(query);
-    }
+  //  }
 }
 
 //insert BeaconData
 exports.insertBeaconData = function (db,table,timestamp,uuid,distance){
-    if (exists) {
+    //if (exists) {
         db.serialize(function () {
             var query = "INSERT INTO "+table+"(Timestamp,UUID,Distance) VALUES (?,?,?)";
             var stmt = db.prepare(query);
@@ -46,12 +46,12 @@ exports.insertBeaconData = function (db,table,timestamp,uuid,distance){
             });
             stmt.finalize();
         });
-    }
+    //}
 }
 
 //get data depends on condition
 exports.getBeaconData = function (db,table,condition,callback) {
-    if (exists) {
+   // if (exists) {
         db.serialize(function () {
             //condition은 사용자에게 입력받은 조건(where절)
             var stmt = "SELECT * from "+table+" where ";
@@ -70,10 +70,10 @@ exports.getBeaconData = function (db,table,condition,callback) {
                 }
             });
         })
-    }
-    else {
-        console.log("Database file does not exists")
-    }
+    //}
+    //else {
+    //    console.log("Database file does not exists")
+    //}
 }
 /*
 exports.setBeaconDataArray = function (rows) {

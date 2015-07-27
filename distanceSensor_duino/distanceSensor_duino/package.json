@@ -1,0 +1,10 @@
+{
+  "name": "distanceSensor_duino",
+  "version": "0.0.0",
+  "description": "distanceSensor_duino",
+  "main": "app.js",
+  "author": {
+    "name": "adsl",
+    "email": ""
+  }
+}

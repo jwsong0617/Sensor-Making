@@ -33,5 +33,5 @@ dbmanager.getBeaconData(db, 'iBeacon', condition, function (rows) {
 
 db2 = dbmanager.getDB('beacon2');
 ibeacon.getBeaconData(function (beacon,timestamp){
-    dbmanager.insertBeaconData(db2, 'iBeacon2', timestamp, beacon.uuid, beacon.distance);
+    dbmanager.insertBeaconData(db2, 'iBeacon2', timestamp, beacon.uuid, beacon.accuracy);
     });

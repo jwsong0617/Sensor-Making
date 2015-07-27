@@ -1,7 +1,8 @@
 ﻿var dbmanager = require('./dbmanager.js');
+var ibeacon = require('./ibeacon.js');
 //getDB checked
 //db = dbmanager.getDB('beacon');
-db2 = dbmanager.getDB('beacon2');
+//db2 = dbmanager.getDB('beacon2');
 
 //createDBfile checked
 //dbmanager.createDBfile('beacon2');
@@ -10,7 +11,7 @@ db2 = dbmanager.getDB('beacon2');
 //dbmanager.createBeaconTable(db2, 'iBeacon2');
 
 //insertBeaconData checked
-dbmanager.insertBeaconData(db2, 'iBeacon2', '1437569247455', 'itistest', 20);
+//dbmanager.insertBeaconData(db2, 'iBeacon2', '1437569247455', 'itistest', 20);
 
 //getBeaconData checked
 /*
@@ -28,4 +29,7 @@ dbmanager.getBeaconData(db, 'iBeacon', condition, function (rows) {
     }
 });
 */
-dbmanager.closeDB(db2);
+//dbmanager.closeDB(db2);
+
+db2 = dbmanager.getDB('beacon2');
+ibeacon.getBeaconData(dbmanager.insertBeaconData(db2, 'iBeacon2', timestamp, beacon.uuid, beacon.distance));

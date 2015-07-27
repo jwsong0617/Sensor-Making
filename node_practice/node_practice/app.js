@@ -32,4 +32,6 @@ dbmanager.getBeaconData(db, 'iBeacon', condition, function (rows) {
 //dbmanager.closeDB(db2);
 
 db2 = dbmanager.getDB('beacon2');
-ibeacon.getBeaconData(dbmanager.insertBeaconData(db2, 'iBeacon2', timestamp, beacon.uuid, beacon.distance));
+ibeacon.getBeaconData(function (beacon,timestamp){
+    dbmanager.insertBeaconData(db2, 'iBeacon2', timestamp, beacon.uuid, beacon.distance);
+    });

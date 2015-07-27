@@ -100,4 +100,5 @@ exports.setBeaconDataArray = function (rows) {
 //close db
 exports.closeDB = function (db){
     db.close();
+    console.log('db closed')
 }

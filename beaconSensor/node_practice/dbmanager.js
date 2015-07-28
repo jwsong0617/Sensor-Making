@@ -40,8 +40,13 @@ ibeaconDB.prototype.createTable = function (name) {
 ibeaconDB.prototype.getData = function (table, condition) {
     this.database.serialize(function () {
         //condition은 사용자에게 입력받은 조건(where절)
-        var stmt = "SELECT * from " + table + " where ";
-        stmt = stmt + condition;
+        if(typeof condition === 'string'){
+            var stmt = "SELECT * from " + table + " where " + condition;
+            //stmt = stmt + condition;
+        }
+        else {
+            var stmt = "SELECT * from " + table;
+        }        
         this.database.all(stmt, function (err, rows) {
             if (err) throw err;
             if (rows.length != 0) {                
@@ -50,10 +55,9 @@ ibeaconDB.prototype.getData = function (table, condition) {
             else {
                 console.log("Data dose not exists");
             }
-        });
+        });                    
     })
 }
-
 //insert BeaconData
 ibeaconDB.prototype.insertData = function (table, timestamp, uuid, distance) {
     var db = this.database;        

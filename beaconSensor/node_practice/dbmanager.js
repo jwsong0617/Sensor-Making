@@ -38,7 +38,8 @@ ibeaconDB.prototype.createTable = function (name) {
     this.database.run(query);
 }
 ibeaconDB.prototype.getData = function (table, condition) {
-    this.database.serialize(function () {
+    var db = this.database;
+    db.serialize(function () {
         //condition은 사용자에게 입력받은 조건(where절)
         if(typeof condition === 'string'){
             var stmt = "SELECT * from " + table + " where " + condition;
@@ -47,7 +48,7 @@ ibeaconDB.prototype.getData = function (table, condition) {
         else {
             var stmt = "SELECT * from " + table;
         }        
-        this.database.all(stmt, function (err, rows) {
+        db.all(stmt, function (err, rows) {
             if (err) throw err;
             if (rows.length != 0) {                
                 return rows;//rows는 array

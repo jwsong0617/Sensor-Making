@@ -1,5 +1,5 @@
 ﻿var arduinoPort = 'USB0';
-var pinName = '00'
+var pinName = 'A0'
 var sensorValue, cm; 
 var arduino = require('duino'),
     board = new arduino.Board({

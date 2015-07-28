@@ -14,10 +14,11 @@ board.on('ready', function () {
         board.analogRead(pinName);
     }, 1000);
 });
-
-board.on('connected', function () {
+/*
+board.on('connected', function () {//connect checked
     console.log('serial port is connected');
 });
+*/
 
 board.on('data', function (message) {
 //    console.log(message);
@@ -34,7 +35,7 @@ board.on('data', function (message) {
     
     console.log('reading value from pin' + pin + ': ' + data);
     if (pin === pinName) {
-        var cm = 10650.08 * pow(data, -0.935) - 10;        
+        var cm = 10650.08 * Math.pow(data, -0.935) - 10;        
         console.log('current distance is ' + cm + ' cm');
     }
 });

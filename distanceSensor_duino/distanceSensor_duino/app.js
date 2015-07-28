@@ -1,11 +1,16 @@
-﻿var arduino = require('duino'),
+﻿var arduinoPort = 'USB0';
+var pinName = '00'
+var sensorValue, cm; 
+var arduino = require('duino'),
     board = new arduino.Board({
         device: 'USB0'
     });
 
-var led = new arduino.Led({
-    board: board,
-    pin: 13
+board.on('ready', function () {
+    console.log("arduino board is ready to serve.");
+    board.pinMode(pinName, 'in');
 });
 
-led.blink();
+board.on('data', function (message) {
+    console.log(m);
+});

@@ -37,6 +37,11 @@ ibeaconDB.prototype.createTable = function (name) {
     query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
     this.database.run(query);
 }
+
+ibeaconDB.prototype.showTables = function (name){
+    this.database.run('.tables');
+}
+
 ibeaconDB.prototype.getQueryResult = function (table, callback, condition) {
     var db = this.database;
     db.serialize(function () {
@@ -57,7 +62,7 @@ ibeaconDB.prototype.getQueryResult = function (table, callback, condition) {
                 console.log("Data dose not exists");
             }
         });
-    }) 
+    })
 }
 //insert BeaconData
 ibeaconDB.prototype.insertSignalData = function (table, timestamp, uuid, distance) {
@@ -71,8 +76,3 @@ ibeaconDB.prototype.insertSignalData = function (table, timestamp, uuid, distanc
         stmt.finalize();
     });
 }
-/*
-function distanceDB() {
-
-}
-*/

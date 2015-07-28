@@ -37,7 +37,7 @@ ibeaconDB.prototype.createTable = function (name) {
     query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
     this.database.run(query);
 }
-ibeaconDB.prototype.getData = function (table, callback, condition) {
+ibeaconDB.prototype.getQueryResult = function (table, callback, condition) {
     var db = this.database;
     db.serialize(function () {
         //condition은 사용자에게 입력받은 조건(where절)
@@ -60,7 +60,7 @@ ibeaconDB.prototype.getData = function (table, callback, condition) {
     }) 
 }
 //insert BeaconData
-ibeaconDB.prototype.insertData = function (table, timestamp, uuid, distance) {
+ibeaconDB.prototype.insertSignalData = function (table, timestamp, uuid, distance) {
     var db = this.database;
     db.serialize(function () {
         var query = "INSERT INTO " + table + "(Timestamp,UUID,Distance) VALUES (?,?,?)";

@@ -2,13 +2,13 @@
 var ibeacon = require('./ibeacon.js');
 
 ibeaconDB = dbmanager.getDataBase('ibeacon');
-/*
+
 ibeaconDB.createTable('ibeacon');
 ibeacon.addBeaconListener(function (beacon, timestamp) {
-    ibeaconDB.insertData('ibeacon', timestamp, beacon.uuid, beacon.accuracy);
+    ibeaconDB.insertSignalData('ibeacon', timestamp, beacon.uuid, beacon.accuracy);
 });
-*/
-ibeaconDB.getData('ibeacon',  function (rows) {
+
+ibeaconDB.getQueryResult('ibeacon',  function (rows) {
     if (rows.length != 0) {
         rows.forEach(function (row) {
             //print out results
@@ -17,7 +17,7 @@ ibeaconDB.getData('ibeacon',  function (rows) {
     }
 }, 'Timestamp == 1438060516877');
 
-ibeaconDB.getData('ibeacon', function (rows) {
+ibeaconDB.getQueryResult('ibeacon', function (rows) {
     if (rows.length != 0) {
         rows.forEach(function (row) {
             //print out results

@@ -37,7 +37,7 @@ ibeaconDB.prototype.createTable = function (name) {
     query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
     this.database.run(query);
 }
-ibeaconDB.prototype.getData = function (table, condition,callback) {
+ibeaconDB.prototype.getData = function (table, callback, condition) {
     var db = this.database;
     db.serialize(function () {
         //condition은 사용자에게 입력받은 조건(where절)

@@ -37,24 +37,27 @@ ibeaconDB.prototype.createTable = function (name) {
     query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
     this.database.run(query);
 }
-ibeaconDB.prototype.getData = function (table, condition) {
+ibeaconDB.prototype.getData = function (table, condition,callback) {
     var db = this.database;
-    var results = new Array();
     db.serialize(function () {
         //condition은 사용자에게 입력받은 조건(where절)
+        if (typeof condition === 'string') {
             var stmt = "SELECT * from " + table + " where " + condition;
-            //stmt = stmt + condition;        
+            //stmt = stmt + condition;      
+        }
+        else {
+            var stmt = "SELECT * from " + table;
+        }
         db.all(stmt, function (err, rows) {
             if (err) throw err;
             if (rows.length != 0) {
-                results = rows;//rows는 array                
+                callback(rows);//rows는 array              
             }
             else {
                 console.log("Data dose not exists");
             }
         });
-    })
-    return results;
+    }) 
 }
 //insert BeaconData
 ibeaconDB.prototype.insertData = function (table, timestamp, uuid, distance) {

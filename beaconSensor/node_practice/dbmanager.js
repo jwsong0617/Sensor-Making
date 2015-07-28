@@ -1,113 +1,73 @@
 ﻿var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
 
-//create DB
-//var exists;
-exports.createDBfile = function (filename){
-    var dbfile = "./" + filename + ".db";
-    var exists = fs.existsSync(dbfile);    
-    if (!exists) {
-        console.log("Creating DB file.");
-        fs.openSync(dbfile, "w");
-        console.log("Done.");
-    }
-    if (exists) {
-        console.log("DB file exists")
-    }
+exports.getDataBase = function (type) {
+    if (type == 'ibeacon') return new ibeaconDB();
+    else if (type == 'distance') return new distanceDB();
+} 
+
+exports.closeDataBase = function (database) {
+    database.close();
+    console.log('database closed');
 }
-//get DB
-exports.getDB = function (filename){
-    var dbfile = "./" + filename+".db";
-    var exists = fs.existsSync(dbfile);
-    if(exists){    
-        //open the database
-        var db = new sqlite3.Database(dbfile);
-        return db;
-        }            
-    else {
-        console.log("Database file does not exists")
-    }
+
+function ibeaconDB() {
+    this.database = function () {
+        var dbfile = './ibeacon.db';
+        var exists = fs.existsSync(dbfile);
+        if (!exists) {
+            console.log("Creating DB file.");
+            fs.openSync(dbfile, "w");
+            console.log("Done.");
+            console.log("Getting DB file.");
+            var ibeaconDataBase = new sqlite3.Database(dbfile);            
+            return ibeaconDataBase;            
+        }    
+        else if (exists) {
+            //open the database
+            console.log("Getting DB file.");
+            var ibeaconDataBase = new sqlite3.Database(dbfile);            
+            return ibeaconDataBase;            
+        }
+        console.log("Done.");                    
+    }();
 }
-//create BeaconTable
-exports.createBeaconTable = function (db, name){
-  //  if(exists){
-        query = "CREATE TABLE "+name+" (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
-        db.run(query);
-  //  }
+
+ibeaconDB.prototype.createTable = function (name) {    
+    query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
+    this.database.run(query);
+}
+ibeaconDB.prototype.getData = function (table, condition) {
+    this.database.serialize(function () {
+        //condition은 사용자에게 입력받은 조건(where절)
+        var stmt = "SELECT * from " + table + " where ";
+        stmt = stmt + condition;
+        this.database.all(stmt, function (err, rows) {
+            if (err) throw err;
+            if (rows.length != 0) {                
+                return rows;//rows는 array
+            }
+            else {
+                console.log("Data dose not exists");
+            }
+        });
+    })
 }
 
 //insert BeaconData
-exports.insertBeaconData = function (db,table,timestamp,uuid,distance){
-    //if (exists) {
-        db.serialize(function () {
-            var query = "INSERT INTO "+table+"(Timestamp,UUID,Distance) VALUES (?,?,?)";
-            var stmt = db.prepare(query);
-            stmt.run(timestamp,uuid,distance, function () {
-                console.log(timestamp+", "+uuid+", "+distance);
-            });
-            stmt.finalize();
+ibeaconDB.prototype.insertData = function (table, timestamp, uuid, distance) {
+    var db = this.database;        
+    db.serialize(function () {
+        var query = "INSERT INTO " + table + "(Timestamp,UUID,Distance) VALUES (?,?,?)";
+        var stmt = db.prepare(query);
+        stmt.run(timestamp, uuid, distance, function () {
+            console.log(timestamp + ", " + uuid + ", " + distance);
         });
-    //}
-}
-
-//get data depends on condition
-exports.getBeaconData = function (db,table,condition,callback) {
-   // if (exists) {
-        db.serialize(function () {
-            //condition은 사용자에게 입력받은 조건(where절)
-            var stmt = "SELECT * from "+table+" where ";
-            stmt = stmt + condition;
-            db.all(stmt, function (err, rows) {
-                if (err) throw err;
-            if (rows.length != 0) {
-                    /*
-                    rows.forEach(function (row) {
-                        //print out results
-                        console.log(row.Timestamp + " " + row.UUID + ", " + row.Distance);
-                    });
-                    */
-                    callback(rows);//rows는 array
-                }
-                else {
-                    console.log("Data dose not exists");
-                }
-            });
-        })
-    //}
-    //else {
-    //    console.log("Database file does not exists")
-    //}
+        stmt.finalize();
+    });    
 }
 /*
-exports.setBeaconDataArray = function (rows) {
-    if (exists) {
-        if (rows.length != 0) {
-            var array = new Array(new Array(rows.length), new Array(3));
-            var i = 0;
-            var j = 0;
-            rows.forEach(function (row) {
-                array[i][0] = row.Timestamp;
-                array[i][1] = row.UUID
-                array[i][2] = row.Distance;
-                i++;
-                //print out results
-                //console.log(row.Timestamp + " " + row.UUID + ", " + row.Distance);
-            });
-        }
-    }     
+function distanceDB() {
+
 }
 */
-//close db
-exports.closeDB = function (db){
-    db.close();
-    console.log('db closed')
-}
-
-exports.ibeacon = new ibeaconDB()
-
-
-function ibeaconDB() {
-
-}
-
-ibeaconDB.prototype.

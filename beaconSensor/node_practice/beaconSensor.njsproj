@@ -33,11 +33,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Compile Include="dbmanagerTest.js" />
+    <Compile Include="dbmanager.js" />
     <Compile Include="test\beacon_test.js" />
     <Compile Include="test\bleacon.js" />
     <Compile Include="test\bleacon_and_sqlite.js" />
-    <Compile Include="dbmanager.js" />
+    <Compile Include="dbmanager_old.js" />
     <Compile Include="test\enterexit_test.js" />
     <Compile Include="test\get_uuid_and_rssi.js" />
     <Compile Include="ibeacon.js" />

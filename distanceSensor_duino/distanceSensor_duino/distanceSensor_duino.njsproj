@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Content Include="distanceSensor.ino" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>

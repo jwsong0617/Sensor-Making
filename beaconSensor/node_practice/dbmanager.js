@@ -102,3 +102,12 @@ exports.closeDB = function (db){
     db.close();
     console.log('db closed')
 }
+
+exports.ibeacon = new ibeaconDB()
+
+
+function ibeaconDB() {
+
+}
+
+ibeaconDB.prototype.

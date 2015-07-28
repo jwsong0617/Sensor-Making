@@ -8,6 +8,7 @@ ibeacon.addBeaconListener(function (beacon,timestamp){
     });
 */
 ibeaconDB = dbmanagerTest.getDataBase('ibeacon');
+//ibeaconDB.createTable('ibeacon');
 ibeacon.addBeaconListener(function (beacon, timestamp) {
     ibeaconDB.insertData('ibeacon', timestamp, beacon.uuid, beacon.accuracy);
 });

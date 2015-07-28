@@ -21,16 +21,15 @@ function ibeaconDB() {
             console.log("Done.");
             console.log("Getting DB file.");
             var ibeaconDataBase = new sqlite3.Database(dbfile);            
-            return ibeaconDataBase;
-            console.log("Done.");
+            return ibeaconDataBase;            
         }    
         else if (exists) {
             //open the database
             console.log("Getting DB file.");
-            var ibeaconDataBase = new sqlite3.Database(dbfile);
-            return ibeaconDataBase;
-            console.log("Done.");
-        }                    
+            var ibeaconDataBase = new sqlite3.Database(dbfile);            
+            return ibeaconDataBase;            
+        }
+        console.log("Done.");                    
     }();
 }
 
@@ -56,10 +55,11 @@ ibeaconDB.prototype.getData = function (table, condition) {
 }
 
 //insert BeaconData
-ibeaconDB.prototype.insertData = function (table, timestamp, uuid, distance) {    
-    this.database.serialize(function () {
+ibeaconDB.prototype.insertData = function (table, timestamp, uuid, distance) {
+    var db = this.database;        
+    db.serialize(function () {
         var query = "INSERT INTO " + table + "(Timestamp,UUID,Distance) VALUES (?,?,?)";
-        var stmt = this.database.prepare(query);
+        var stmt = db.prepare(query);
         stmt.run(timestamp, uuid, distance, function () {
             console.log(timestamp + ", " + uuid + ", " + distance);
         });

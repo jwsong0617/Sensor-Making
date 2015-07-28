@@ -8,14 +8,14 @@ ibeacon.addBeaconListener(function (beacon, timestamp) {
     ibeaconDB.insertData('ibeacon', timestamp, beacon.uuid, beacon.accuracy);
 });
 */
-rows = ibeaconDB.getData('ibeacon', 'Timestamp == 1438060516877');
+var rows = ibeaconDB.getData('ibeacon', 'Timestamp == 1438060516877');
 if (rows.length != 0) {
-                   rows2.forEach(function (row) {
+                   rows.forEach(function (row) {
                         //print out results
                         console.log(row.Timestamp + " " + row.UUID + ", " + row.Distance);
                     });
     }
-rows2 = ibeaconDB.getData('ibeacon')
+var rows2 = ibeaconDB.getData('ibeacon')
 if (rows2.length != 0) {
     
                     rows2.forEach(function (row) {

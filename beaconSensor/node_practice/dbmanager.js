@@ -39,7 +39,7 @@ ibeaconDB.prototype.createTable = function (name) {
 }
 ibeaconDB.prototype.getData = function (table, condition) {
     var db = this.database;
-    var results;
+    var results = new Array();
     db.serialize(function () {
         //condition은 사용자에게 입력받은 조건(where절)
         if(typeof condition === 'string'){
@@ -52,7 +52,7 @@ ibeaconDB.prototype.getData = function (table, condition) {
         db.all(stmt, function (err, rows) {
             if (err) throw err;
             if (rows.length != 0) {
-                results = rows;//rows는 array                
+                results = rows.slice();//rows는 array                
             }
             else {
                 console.log("Data dose not exists");

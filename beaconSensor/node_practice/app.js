@@ -14,12 +14,13 @@ if (rows.length != 0) {
                         //print out results
                         console.log(row.Timestamp + " " + row.UUID + ", " + row.Distance);
                     });
-    }
+}
+    /*
 var rows2 = ibeaconDB.getData('ibeacon')
-if (rows2.length != 0) {
-    
+if (rows2.length != 0) {    
                     rows2.forEach(function (row) {
                         //print out results
                         console.log(row.Timestamp + " " + row.UUID + ", " + row.Distance);
                     });
                     }
+    */

@@ -15,6 +15,10 @@ board.on('ready', function () {
     }, 1000);
 });
 
+board.on('connected', function () {
+    console.log('serial port is connected');
+});
+
 board.on('data', function (message) {
 //    console.log(message);
     var m = message.slice(0, -1).split('::'),

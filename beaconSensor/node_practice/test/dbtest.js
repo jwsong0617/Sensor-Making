@@ -2,7 +2,7 @@
 var sqlite3 = require("sqlite3").verbose();
 
 exports.getDataBase = function (type) {
-    if (type == 'ibeacon') return new ibeaconDB();
+    if (type == 'ibeacon') return new ibeaconDB('ibeacon');
     else if (type == 'distance') return new distanceDB();
 }
 
@@ -11,7 +11,33 @@ exports.closeDataBase = function (database) {
     console.log('database closed');
 }
 
-function ibeaconDB() {
+function ibeaconDB(defaultTableName) {
+    var self = this;
+    var dbfile = './ibeacon.db';
+    var exists = fs.existsSync(dbfile);
+    var ibeaconDataBase;
+    if (!exists) {
+        console.log("Creating DB file.");
+        fs.openSync(dbfile, "w");
+        console.log("Done.");
+        console.log("Getting DB file.");
+        ibeaconDataBase = new sqlite3.Database(dbfile);
+        
+    }    
+    else if (exists) {
+        //open the database
+        console.log("Getting DB file.");
+        ibeaconDataBase = new sqlite3.Database(dbfile);
+        
+    }
+    this.database = ibeaconDataBase;
+    // XXX:checking table is existed.
+    // FIXME:here is a dragon
+    var query = "CREATE TABLE " + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)";
+    this.database.run(query);
+    this.defaultTable = defaultTableName;
+    
+    /*
     this.database = function () {
         var dbfile = './ibeacon.db';
         var exists = fs.existsSync(dbfile);
@@ -31,30 +57,35 @@ function ibeaconDB() {
         }
         console.log("Done.");
     }();
+    this.defaultTable = function () {
+        query = "CREATE TABLE " + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)";
+        this.database.run(query);
+    }();
+    */
 }
 ibeaconDB.prototype.showTableNames = function () {
     this.database.all("SELECT name FROM sqlite_master WHERE type = 'table'", function (err, rows) {
         if (err) throw err;
         if (rows.length != 0) {
             rows.forEach(function (row) {
-                console.log('table name: '+row.name);
+                console.log('table name: ' + row.name);
             });
         }
     });
 }
 
 ibeaconDB.prototype.createTable = function (name) {
-    query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"
+    query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)";
     this.database.run(query);
 }
 
-ibeaconDB.prototype.showTables = function (name){
-    this.database.run('.tables');
-}
-
-ibeaconDB.prototype.getQueryResult = function (table, callback, condition) {
+ibeaconDB.prototype.getQueryResult = function (callback, condition,tableName) {
     var db = this.database;
+    var table = this.defaultTable;    
     db.serialize(function () {
+        if (typeof tableName === 'string') {
+            table = tableName;
+        }
         //condition은 사용자에게 입력받은 조건(where절)
         if (typeof condition === 'string') {
             var stmt = "SELECT * from " + table + " where " + condition;

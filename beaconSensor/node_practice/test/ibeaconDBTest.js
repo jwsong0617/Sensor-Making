@@ -1,17 +1,10 @@
 ﻿var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
-var ibeaconDB = require('./ibeaconDBTest.js');
 
-exports.getDataBase = function (type) {
-    if (type == 'ibeacon') return ibeaconDB.newIbeaconDB();
-    //else if (type == 'distance') return new distanceDB();
+exports.newIbeaconDB = function (){
+    return new ibeaconDB('ibeacon');
 }
 
-exports.closeDataBase = function (database) {
-    database.close();
-    console.log('database closed');
-}
-/*
 function ibeaconDB(defaultTableName) {
     var self = this;
     var dbfile = './ibeacon.db';
@@ -90,4 +83,3 @@ ibeaconDB.prototype.insertSignalData = function (table, timestamp, uuid, distanc
         stmt.finalize();
     });
 }
- * */

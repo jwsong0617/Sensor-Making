@@ -42,6 +42,7 @@
     <Compile Include="test\enterexit_test.js" />
     <Compile Include="test\get_uuid_and_rssi.js" />
     <Compile Include="ibeacon.js" />
+    <Compile Include="test\ibeaconDBTest.js" />
     <Compile Include="test\JavaScript1.js" />
     <Compile Include="test\JavaScript2.js" />
     <Compile Include="test\adv-discovery.js" />

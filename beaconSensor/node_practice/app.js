@@ -1,4 +1,4 @@
-﻿var dbmanager = require('./dbtest.js');
+﻿var dbmanager = require('./dbmanager.js');
 var ibeacon = require('./ibeacon.js');
 
 ibeaconDB = dbmanager.getDataBase('ibeacon');

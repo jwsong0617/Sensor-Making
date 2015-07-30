@@ -33,7 +33,7 @@ function ibeaconDB(defaultTableName) {
     this.database = ibeaconDataBase;
     // XXX:checking table is existed.
     // FIXME:here is a dragon
-    var query = "CREATE TABLE IF NOT EXISTS" + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)";
+    var query = "CREATE TABLE IF NOT EXISTS " + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)";
     this.database.run(query);
     this.defaultTable = defaultTableName;
     

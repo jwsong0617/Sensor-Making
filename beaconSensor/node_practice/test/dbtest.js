@@ -37,7 +37,7 @@ ibeaconDB.prototype.showTableNames = function () {
         if (err) throw err;
         if (rows.length != 0) {
             rows.forEach(function (row) {
-                console.log(row+'\trow name:'+row.name);
+                console.log('table name: '+row.name);
             });
         }
     });

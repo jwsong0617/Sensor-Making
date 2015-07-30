@@ -33,10 +33,12 @@ function ibeaconDB() {
     }();
 }
 ibeaconDB.prototype.showTableNames = function () {
-    this.database.get("SELECT name FROM sqlite_master WHERE type = 'table'", function (err, row) {
+    this.database.all("SELECT name FROM sqlite_master WHERE type = 'table'", function (err, rows) {
         if (err) throw err;
         if (rows.length != 0) {
-            console.log(row);
+            rows.forEach(function (row) {
+                console.log(row+'\trow name:'+row.name);
+            });
         }
     });
 }

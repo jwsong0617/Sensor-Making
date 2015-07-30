@@ -32,6 +32,14 @@ function ibeaconDB() {
         console.log("Done.");
     }();
 }
+ibeaconDB.prototype.showTableNames = function (){
+    this.database.get("SELECT name FROM sqlite_master WHERE type = 'table'", function (err,row) {
+        if (err) throw err;
+        if (rows.length != 0) {
+            console.log(row);
+        }
+    });
+}
 
 ibeaconDB.prototype.createTable = function (name) {
     query = "CREATE TABLE " + name + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)"

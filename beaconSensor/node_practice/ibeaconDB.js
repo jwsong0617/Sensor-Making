@@ -9,6 +9,7 @@ exports.hasDB = function () {
     return exists;
 }
 exports.createFile = function () {
+    var dbfile = './ibeacon.db';
     console.log("Creating DB file.");
     fs.openSync(dbfile, "w");
     console.log("Done.");

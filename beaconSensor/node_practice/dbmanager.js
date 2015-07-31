@@ -27,8 +27,10 @@ exports.create = function (type,tableName, scb, ecb) {
     //if (!database.hasTable())
         database.createTable(tableName);// data base table creation if not exists
     }
+    /*
     if (error && ecb != null)
         ecb('Unknown Error');
+    */
     table = database.getTableName();
     databaseType = database.getDBType();
     //dbTable[type] = tableName    

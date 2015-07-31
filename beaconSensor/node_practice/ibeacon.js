@@ -10,3 +10,9 @@ exports.addBeaconListener = function (callback){
         }
     });
 }
+exports.removeBeaconListener = function () {
+    
+    Bleacon.on('discover', function () {           
+    });
+console.log('listener removed');
+}

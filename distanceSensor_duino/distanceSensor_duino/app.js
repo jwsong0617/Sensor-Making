@@ -9,8 +9,8 @@ dbmanager.inquire();
  */
 distanceSensor.addSensorListener(function (cm, timestamp) {
     dbmanager.save(timestamp, cm);
-    console.log(timestamp + ', ' + cm);
-    });
+    console.log('timestamp: ' + timestamp + ', ' + 'cm: ' + cm);
+});
 
 /*
 distanceSensor.addDistanceListener(function (cm, timestamp) {

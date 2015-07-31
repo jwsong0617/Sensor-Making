@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "beaconSensor", "node_practice\beaconSensor.njsproj", "{D7695BE9-5995-4705-9A80-8F48973FF725}"
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "beaconSensor", "node\beaconSensor.njsproj", "{D7695BE9-5995-4705-9A80-8F48973FF725}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

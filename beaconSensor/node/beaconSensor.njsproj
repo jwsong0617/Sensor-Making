@@ -36,6 +36,10 @@
     <Compile Include="backup\app.js" />
     <Compile Include="backup\dbmanager.js" />
     <Compile Include="dbmanager.js" />
+    <Compile Include="Final\app.js" />
+    <Compile Include="Final\dbmanager.js" />
+    <Compile Include="Final\ibeacon.js" />
+    <Compile Include="Final\ibeaconDB.js" />
     <Compile Include="ibeacon.js" />
     <Compile Include="test\beacon_test.js" />
     <Compile Include="test\bleacon.js" />
@@ -55,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="backup\" />
+    <Folder Include="Final\" />
     <Folder Include="test\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

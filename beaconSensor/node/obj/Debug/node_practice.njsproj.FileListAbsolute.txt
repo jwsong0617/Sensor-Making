@@ -1,0 +1,1 @@
+C:\git\Sensor-Making\node_practice\node_practice\bin\Microsoft.NodejsTools.WebRole.dll

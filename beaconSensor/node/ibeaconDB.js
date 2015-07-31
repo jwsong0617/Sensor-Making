@@ -19,14 +19,12 @@ exports.createFile = function () {
     fs.openSync(dbfile, "w");
     console.log("Done.");
     console.log("Getting DB file.");
-    ibeaconDataBase = new sqlite3.Database(dbfile);    
-    database = ibeaconDataBase;
+    database = new sqlite3.Database(dbfile);        
 }
 exports.openFile = function (){
     var dbfile = './ibeacon.db';
     console.log("Getting DB file.");
-    ibeaconDataBase = new sqlite3.Database(dbfile);
-    database = ibeaconDataBase;
+    database = new sqlite3.Database(dbfile);    
 }
 exports.createTable = function (defaultTableName) {
     var query = "CREATE TABLE IF NOT EXISTS " + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)";

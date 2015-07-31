@@ -34,6 +34,7 @@
     <Compile Include="distanceSensor.js" />
     <Compile Include="distanceDB.js" />
     <Compile Include="dbmanager.js" />
+    <Compile Include="test.js" />
     <Content Include="distanceSensor.ino" />
     <Content Include="package.json" />
     <Content Include="README.md" />

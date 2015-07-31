@@ -19,7 +19,7 @@ exports.addSensorListener = function (callback) {
 }
 
 exports.addDistanceListener = function (callback) {
-    if (ready == true) {
+    
         board.on('data', function (message) {
             //    console.log(message);
             var m = message.slice(0, -1).split('::'),
@@ -41,7 +41,7 @@ exports.addDistanceListener = function (callback) {
             timestamp = new Date().getTime();
             callback(cm, timestamp);
         });
-    }
+    
 }
 
 exports.removeDistanceListener = function (){

@@ -17,6 +17,12 @@ exports.createFile = function () {
     ibeaconDataBase = new sqlite3.Database(dbfile);    
     database = ibeaconDataBase;
 }
+exports.openFile = function (){
+    var dbfile = './ibeacon.db';
+    console.log("Getting DB file.");
+    ibeaconDataBase = new sqlite3.Database(dbfile);
+    database = ibeaconDataBase;
+}
 exports.createTable = function (defaultTableName) {
     var query = "CREATE TABLE IF NOT EXISTS " + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,UUID TEXT NOT NULL,Distance REAL NOT NULL)";
     database.run(query);

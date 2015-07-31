@@ -22,11 +22,12 @@ exports.create = function (type,tableName, scb, ecb) {
     if (type == 'distance') database = require('./distanceDB.js');
     if (type == 'sound') database = require('./soundDB.js');
     
-    if (!database.hasDB()){
+    if (!database.hasDB())
         database.createFile(); // data base file creation
+    else if (database.hasDB())
+        database.openFile();
     //if (!database.hasTable())
-        database.createTable(tableName);// data base table creation if not exists
-    }
+    database.createTable(tableName);// data base table creation if not exists    
     /*
     if (error && ecb != null)
         ecb('Unknown Error');

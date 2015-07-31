@@ -7,11 +7,18 @@ dbmanager.list();
 dbmanager.inquire();
 dbmanager.inquire();
  */
+/*
 distanceSensor.addSensorListener(function (cm, timestamp) {
     dbmanager.save(timestamp, cm);
     console.log('timestamp: ' + timestamp + ', ' + 'cm: ' + cm);
 });
-
+*/
+distanceSensor.addSensorListener(function () {
+    distanceSensor.addDistanceListener(function (cm, timestamp) {
+        dbmanager.save(timestamp, cm);
+        console.log('timestamp: ' + timestamp + ', ' + 'cm: ' + cm);
+    });
+});
 /*
 distanceSensor.addDistanceListener(function (cm, timestamp) {
     dbmanager.save(timestamp, cm);

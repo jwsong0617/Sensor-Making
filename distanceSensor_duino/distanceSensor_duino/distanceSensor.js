@@ -18,6 +18,7 @@ exports.addSensorListener = function (callback) {
     });
 
     board.on('data', function (message) {
+        console.log("data is ready to serve.");
         //    console.log(message);
         var m = message.slice(0, -1).split('::'),
             err = null,

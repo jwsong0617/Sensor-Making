@@ -1,8 +1,14 @@
 ﻿var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
 
-exports.newIbeaconDB = function (){
-    return new ibeaconDB('ibeacon');
+exports.getDataBase = function (type) {
+    if (type == 'ibeacon') return new ibeaconDB('ibeacon');
+    else if (type == 'distance') return new distanceDB();
+}
+
+exports.closeDataBase = function (database) {
+    database.close();
+    console.log('database closed');
 }
 
 function ibeaconDB(defaultTableName) {

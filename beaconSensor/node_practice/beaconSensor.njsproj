@@ -33,16 +33,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="backup\app.js" />
+    <Compile Include="backup\dbmanager.js" />
     <Compile Include="dbmanager.js" />
-    <Compile Include="test\dbtest.js" />
+    <Compile Include="ibeacon.js" />
     <Compile Include="test\beacon_test.js" />
     <Compile Include="test\bleacon.js" />
     <Compile Include="test\bleacon_and_sqlite.js" />
     <Compile Include="test\dbmanager_old.js" />
     <Compile Include="test\enterexit_test.js" />
     <Compile Include="test\get_uuid_and_rssi.js" />
-    <Compile Include="ibeacon.js" />
-    <Compile Include="test\ibeaconDBTest.js" />
+    <Compile Include="backup\ibeacon.js" />
+    <Compile Include="ibeaconDB.js" />
     <Compile Include="test\JavaScript1.js" />
     <Compile Include="test\JavaScript2.js" />
     <Compile Include="test\adv-discovery.js" />
@@ -52,6 +54,7 @@
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="backup\" />
     <Folder Include="test\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

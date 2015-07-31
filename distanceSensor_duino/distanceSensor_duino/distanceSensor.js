@@ -65,10 +65,11 @@ exports.addDistanceListener = function (callback) {
         });
     }
 }
+*/
 exports.removeDistanceListener = function (){
     ready = false;
 }
-*/
+
 /*
 board.on('ready', function () {
     console.log("arduino board is ready to serve.");

@@ -10,3 +10,4 @@ dbmanager.inquire('Timestamp == 1438060516877');
 ibeacon.addBeaconListener(function (beacon, timestamp) {
     dbmanager.save(timestamp, beacon);
 });
+ibeacon.removeBeaconListener

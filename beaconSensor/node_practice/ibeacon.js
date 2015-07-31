@@ -1,8 +1,8 @@
 ﻿var Bleacon = require('bleacon');
 var uuid = 'e2c56db5dffb48d2b060d0f5a71096e0'
-Bleacon.startScanning(uuid);
 
 exports.addBeaconListener = function (callback){
+    Bleacon.startScanning(uuid);
     Bleacon.on('discover', function (bleacon) {
         if (bleacon) {
             timestamp = new Date().getTime();            
@@ -10,9 +10,6 @@ exports.addBeaconListener = function (callback){
         }
     });
 }
-exports.removeBeaconListener = function () {
-    
-    Bleacon.on('discover', function () {           
-    });
-console.log('listener removed');
+exports.removeBeaconListener = function () {    
+    Bleacon.stopScanning();
 }

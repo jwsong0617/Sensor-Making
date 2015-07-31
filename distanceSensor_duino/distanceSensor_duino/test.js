@@ -9,7 +9,7 @@ board.on('ready', function () {
     console.log("arduino board is ready to serve.");
     board.pinMode(pinName, 'in');
     setInterval(function () {
-        //console.log('request to get an analog value from ' + pinName);
+        console.log('request to get an analog value from ' + pinName);
         board.analogRead(pinName);
     }, 1000);
 });

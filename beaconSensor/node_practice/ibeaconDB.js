@@ -1,7 +1,7 @@
 ﻿var fs = require("fs");
 var sqlite3 = require("sqlite3").verbose();
 var database = null;
-var table = ''
+var table = '';
 
 exports.hasDB = function () {
     var dbfile = './ibeacon.db';
@@ -43,8 +43,13 @@ exports.showTableNames = function () {
         }
     });
 }
-exports.getTableName = function(){
-    return table;
+exports.getTableName = function (){
+    if (table == '')
+        console.log('Table is not loaded');
+    else {
+        console.log('Table ' + table + ' loaded');
+        return table;
+    }
 }
 exports.setTableName = function (tableName){
     if (typeof tableName === 'string')

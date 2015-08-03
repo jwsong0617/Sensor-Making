@@ -5,9 +5,7 @@ var arduino = require('duino'),
         device: 'USB0'
     });
 
-
 exports.removeDistanceListener = function () {
-    process.exit();
     console.log('Distance Listener is removed');
 }
 exports.addSensorListener = function (callback) {
@@ -16,6 +14,7 @@ exports.addSensorListener = function (callback) {
         board.pinMode(pinName, 'in');
         
         setInterval(function () {
+            //console.log('request to get an analog value from ' + pinName);
             board.analogRead(pinName);
         }, 1000);
     });
@@ -37,6 +36,13 @@ exports.addSensorListener = function (callback) {
         
         pin = m[0];
         volume = m.length === 2 ? m[1] : null;
+        /*
+        //console.log('reading value from pin' + pin + ': ' + data);
+        if (pin === pinName) {
+            var cm = 10650.08 * Math.pow(data, -0.935) - 10;
+            //console.log('current distance is ' + cm + ' cm');
+        }
+        */
         timestamp = new Date().getTime();
         callback(volume, timestamp)
     });

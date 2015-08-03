@@ -25,6 +25,9 @@ exports.save = function (timestamp, obj, tableName, cb) {
         database.insert(timestamp, obj.uuid, obj.accuracy);
     if (databaseType == 'distance')
         database.insert(timestamp, obj);
+    if (databaseType == 'sound')
+        database.insert(timestamp, obj);
+
 }
 
 exports.list = function () {
@@ -54,6 +57,16 @@ exports.inquire = function (condition, tableName, cb) {
                 }
             }, condition);
         }
+        if (databaseType == 'sound') {
+            database.querying(function (rows) {
+                if (rows.length != 0) {
+                    rows.forEach(function (row) {
+                        //print out results
+                        console.log(row.Timestamp + " " + row.volume);
+                    });
+                }
+            }, condition);
+        }
     }
     else {
         if (databaseType == 'ibeacon') {
@@ -72,6 +85,16 @@ exports.inquire = function (condition, tableName, cb) {
                     rows.forEach(function (row) {
                         //print out results
                         console.log(row.Timestamp + " " + row.cm);
+                    });
+                }
+            }, condition);
+        }
+        if (databaseType == 'sound') {
+            database.querying(function (rows) {
+                if (rows.length != 0) {
+                    rows.forEach(function (row) {
+                        //print out results
+                        console.log(row.Timestamp + " " + row.volume);
                     });
                 }
             }, condition);

@@ -1,15 +1,15 @@
 ﻿var dbmanager = require('./dbmanager.js');
-var distanceSensor = require('./distanceSensor.js');
+var soundSensor = require('./soundSensor.js');
 
 dbmanager.create('volume', 'volume');
 dbmanager.list();
 dbmanager.inquire();
-dbmanager.inquire('Timestamp == 1438562903378');
+dbmanager.inquire('Timestamp == 1438574479914');
 
-distanceSensor.addSensorListener(function (volume, timestamp) {
+soundSensor.addSensorListener(function (volume, timestamp) {
     dbmanager.save(timestamp,volume);
 });
 
 setTimeout(function () {
-    distanceSensor.removeDistanceListener();
+    soundSensor.removeDistanceListener();
 }, 5000);

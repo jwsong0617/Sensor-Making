@@ -9,12 +9,12 @@ var table = '';
  * @return true when it is existed or false.
  */
 exports.hasDB = function () {
-    var dbfile = './distance.db';
+    var dbfile = './sound.db';
     var exists = fs.existsSync(dbfile);
     return exists;
 }
 exports.createFile = function () {
-    var dbfile = './distance.db';
+    var dbfile = './sound.db';
     console.log("Creating DB file.");
     fs.openSync(dbfile, "w");
     console.log("Done.");
@@ -22,12 +22,12 @@ exports.createFile = function () {
     database = new sqlite3.Database(dbfile);
 }
 exports.openFile = function () {
-    var dbfile = './distance.db';
+    var dbfile = './sound.db';
     console.log("Getting DB file.");
     database = new sqlite3.Database(dbfile);
 }
 exports.createTable = function (defaultTableName) {
-    var query = "CREATE TABLE IF NOT EXISTS " + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,cm REAL NOT NULL)";
+    var query = "CREATE TABLE IF NOT EXISTS " + defaultTableName + " (Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP PRIMARY KEY NOT NULL,volume INTEGER NOT NULL)";
     database.run(query);
     table = defaultTableName;
     console.log(defaultTableName + ' created');
@@ -39,12 +39,12 @@ exports.createTable = function (defaultTableName) {
  * @param {string} uuid ibeacon unique ID
  * @param {Number} distance measured distance
  */
-exports.insert = function (timestamp, cm) {
+exports.insert = function (timestamp, volume) {
     database.serialize(function () {
-        var query = "INSERT INTO " + table + "(Timestamp,cm) VALUES (?,?)";
+        var query = "INSERT INTO " + table + "(Timestamp,volume) VALUES (?,?)";
         var stmt = database.prepare(query);
-        stmt.run(timestamp, cm, function () {
-            console.log(timestamp + ", " + cm);
+        stmt.run(timestamp, volume, function () {
+            console.log(timestamp + ", " + volume);
         });
         stmt.finalize();
     });
@@ -72,7 +72,7 @@ exports.setTableName = function (tableName) {
         table = tableName;
 }
 exports.getDBType = function () {
-    return 'distance';
+    return 'sound';
 }
 exports.querying = function (callback, condition) {
     database.serialize(function () {

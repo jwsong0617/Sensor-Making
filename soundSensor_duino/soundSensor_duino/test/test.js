@@ -33,6 +33,6 @@ timestamp = new Date().getTime();
 console.log(timestamp + ', ' + volume);
 });
 */
-var dbmanager = require('./dbmanager.js');
+var dbmanager = require('../dbmanager.js');
 dbmanager.create('sound', 'sound');
 dbmanager.inquire();

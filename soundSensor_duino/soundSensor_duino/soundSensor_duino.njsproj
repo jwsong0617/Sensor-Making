@@ -38,6 +38,7 @@
     <Compile Include="dbmanager.js" />
     <Compile Include="soundDB.js" />
     <Compile Include="soundSensor.js" />
+    <Compile Include="test.js" />
     <Compile Include="test\test.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />

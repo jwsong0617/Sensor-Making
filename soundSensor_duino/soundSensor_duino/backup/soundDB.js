@@ -41,14 +41,12 @@ exports.createTable = function (defaultTableName) {
  */
 exports.insert = function (timestamp, volume) {
     database.serialize(function () {
-        if (volume != 0) {
-            var query = "INSERT INTO " + table + "(Timestamp,volume) VALUES (?,?)";
-            var stmt = database.prepare(query);
-            stmt.run(timestamp, volume, function () {
-                console.log(timestamp + ", " + volume);
-            });
-            stmt.finalize();
-        }
+        var query = "INSERT INTO " + table + "(Timestamp,volume) VALUES (?,?)";
+        var stmt = database.prepare(query);
+        stmt.run(timestamp, volume, function () {
+            console.log(timestamp + ", " + volume);
+        });
+        stmt.finalize();
     });
 }
 exports.showTableNames = function () {

@@ -6,9 +6,9 @@ var arduino = require('duino'),
     });
 
 
-exports.removeDistanceListener = function () {
+exports.removeSoundListener = function () {
     process.exit();
-    console.log('Distance Listener is removed');
+    console.log('Sound Listener is removed');
 }
 exports.addSensorListener = function (callback) {
     board.on('ready', function () {
@@ -41,3 +41,13 @@ exports.addSensorListener = function (callback) {
         callback(volume, timestamp)
     });
 }
+process.on('exit', function (code) {
+    if (code == 0) {
+        console.log('Sound Listener is removed');
+    }
+    else {
+        console.log('About to exit with code:', code);
+    }
+});
+
+        

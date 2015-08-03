@@ -11,5 +11,5 @@ soundSensor.addSensorListener(function (volume, timestamp) {
 });
 
 setTimeout(function () {
-    soundSensor.removeDistanceListener();
+    soundSensor.removeSoundListener();
 }, 5000);

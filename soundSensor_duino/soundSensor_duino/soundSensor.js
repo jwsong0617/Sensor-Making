@@ -5,7 +5,7 @@ var arduino = require('duino'),
         device: 'USB0'
     });
 
-
+//TODO: modify code if you have better method to removing Soundlistener
 exports.removeSoundListener = function () {
     process.exit();
     console.log('Sound Listener is removed');

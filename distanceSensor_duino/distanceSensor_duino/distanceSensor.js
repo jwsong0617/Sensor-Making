@@ -5,7 +5,9 @@ var arduino = require('duino'),
         device: 'USB0'
     });
 
+//TODO: modify code if you have better method to removing Distancelistener
 exports.removeDistanceListener = function () {
+    process.exit();
     console.log('Distance Listener is removed');
 }
 exports.addSensorListener = function (callback) {
@@ -46,3 +48,11 @@ exports.addSensorListener = function (callback) {
         callback(cm, timestamp)
     });
 }
+process.on('exit', function (code) {
+    if (code == 0) {
+        console.log('Distance Listener is removed');
+    }
+    else {
+        console.log('About to exit with code:', code);
+    }
+});        

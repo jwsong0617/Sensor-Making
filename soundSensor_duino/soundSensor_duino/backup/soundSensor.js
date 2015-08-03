@@ -16,7 +16,7 @@ exports.addSensorListener = function (callback) {
         setInterval(function () {
             //console.log('request to get an analog value from ' + pinName);
             board.analogRead(pinName);
-        }, 1000);
+        }, 100);
     });
     
     board.on('connected', function () {//connect checked

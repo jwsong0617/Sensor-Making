@@ -1,4 +1,6 @@
-﻿var arduinoPort = 'USB0';
+﻿
+/*
+var arduinoPort = 'USB0';
 var pinName = 'A0'
 var arduino = require('duino'),
     board = new arduino.Board({
@@ -26,14 +28,11 @@ board.on('data', function (message) {
     }
     
     pin = m[0];
-    volume = m.length === 2 ? m[1] : null;
-    /*
-        //console.log('reading value from pin' + pin + ': ' + data);
-        if (pin === pinName) {
-            var cm = 10650.08 * Math.pow(data, -0.935) - 10;
-            //console.log('current distance is ' + cm + ' cm');
-        }
-        */
-    timestamp = new Date().getTime();
-    console.log(timestamp + ', ' + volume);
+    volume = m.length === 2 ? m[1] : null;        
+timestamp = new Date().getTime();
+console.log(timestamp + ', ' + volume);
 });
+*/
+var dbmanager = require('./dbmanager.js');
+dbmanager.create('sound', 'sound');
+dbmanager.inquire();

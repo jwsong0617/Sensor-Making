@@ -79,7 +79,7 @@ exports.addSensorListener = function (callback) {
         //console.log('reading value from pin' + pin + ': ' + data);
         if (pin === pinName) {
             var cm = 10650.08 * Math.pow(data, -0.935) - 10;
-            console.log('current distance is ' + cm + ' cm');
+            //console.log('current distance is ' + cm + ' cm');
         }
         timestamp = new Date().getTime();
         callback(cm, timestamp)

@@ -1,0 +1,10 @@
+{
+  "name": "soundSensor_duino",
+  "version": "0.0.0",
+  "description": "soundSensor_duino",
+  "main": "app.js",
+  "author": {
+    "name": "adsl",
+    "email": ""
+  }
+}
